@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hana-zero"
+# 版本号唯一来源：src/hana_zero/__init__.py 的 __version__，由 hatch 在构建时读取
+dynamic = ["version"]
+description = "hana-zero — 具备感知、认知、行动与自主能力的个人硅基生命体 Agent 系统，构建赛博女儿零号机"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "hana-zero" }]
+keywords = ["agent", "fastapi", "llm", "mcp", "hana"]
+classifiers = [
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Framework :: FastAPI",
+]
+dependencies = [
+  "fastapi[standard]>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "pydantic>=2.9.0",
+  "pydantic-settings>=2.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+  "httpx>=0.27.0",
+  "ruff>=0.7.0",
+  "mypy>=1.11.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/HarrySunV9x/hana-zero"
+Repository = "https://github.com/HarrySunV9x/hana-zero.git"
+
+[tool.hatch.version]
+path = "src/hana_zero/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hana_zero"]
+
+# ---------------------------------------------------------------- 工具配置
+
+# 告诉 fastapi CLI 应用入口在哪，否则 src layout 下 `fastapi dev` 找不到默认文件
+[tool.fastapi]
+entrypoint = "hana_zero.main:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+ignore_missing_imports = true

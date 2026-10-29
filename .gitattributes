@@ -1,0 +1,7 @@
+# 仓库内统一按 LF 存储、按 LF 检出，避免不同平台把整文件改成 CRLF 导致 diff 噪音。
+# 已有文件如需重新规范化，可在本地执行：git add --renormalize .
+* text=auto eol=lf
+
+# Windows 批处理对 CRLF 敏感，保留原样
+*.bat text eol=crlf
+*.cmd text eol=crlf

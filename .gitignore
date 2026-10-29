@@ -1,0 +1,66 @@
+# ------------------------------ Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ------------------------------ 分发 / 打包
+build/
+dist/
+sdist/
+wheels/
+*.egg-info/
+*.egg
+.eggs/
+
+# ------------------------------ 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# ------------------------------ 测试 / 覆盖率
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# ------------------------------ 环境变量与密钥（切勿提交）
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ------------------------------ 类型存根缓存
+.pyre/
+.pytype/
+
+# ------------------------------ 运行期产物（HANA）
+artifacts/
+*.log
+logs/
+data/
+tmp/
+
+# ------------------------------ 编辑器 / IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# ------------------------------ 操作系统
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ------------------------------ agent
+.workbuddy/
