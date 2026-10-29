@@ -50,9 +50,13 @@ hana-zero/
 首先[安装 `uv`](https://docs.astral.sh/uv/getting-started/installation/)，然后同步依赖：
 
 ```bash
-uv sync              # 建 .venv、装运行期 + 开发期依赖、以可编辑模式安装本项目
-uv run fastapi dev   # 热重载：保存文件即自动重启
+uv sync --extra dev   # 建 .venv、装运行期依赖 + dev extra、可编辑方式安装本项目
+uv run fastapi dev    # 热重载：保存文件即自动重启
 ```
+
+开发期依赖（pytest / ruff / mypy / fastapi-cli）放在 `[project.optional-dependencies].dev`
+里，**属于 extra 而不是 uv 的默认 dev group**，所以必须带 `--extra dev`；只写 `uv sync`
+只会装运行期那 21 个包。
 
 不用 uv 的等价写法：
 
@@ -121,4 +125,4 @@ git config commit.template .gitmessage
 
 ## 许可
 
-MIT
+[MIT](LICENSE)
