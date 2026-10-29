@@ -18,7 +18,9 @@ classifiers = [
   "Framework :: FastAPI",
 ]
 dependencies = [
-  "fastapi[standard]>=0.115.0",
+  # 只用 fastapi 本体：fastapi[standard] 会经 fastapi-cli 把 fastapi-cloud-cli
+  # 连同 sentry-sdk、opentelemetry 一并拖进运行期，与服务端无关
+  "fastapi>=0.115.0",
   "uvicorn[standard]>=0.30.0",
   "pydantic>=2.9.0",
   "pydantic-settings>=2.5.0",
@@ -28,9 +30,10 @@ dependencies = [
 dev = [
   "pytest>=8.3.0",
   "pytest-asyncio>=0.24.0",
-  "httpx>=0.27.0",
+  "httpx2>=2.16.0", # TestClient 走的 HTTP 客户端；用旧 httpx 会触发 Starlette 弃用警告
   "ruff>=0.7.0",
   "mypy>=1.11.0",
+  "fastapi-cli>=0.0.32", # `fastapi dev` 的开发期命令，运行期不需要
 ]
 
 [project.urls]
